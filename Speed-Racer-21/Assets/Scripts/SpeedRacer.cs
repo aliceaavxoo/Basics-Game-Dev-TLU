@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class SpeedRacer : MonoBehaviour
 {
-    string CarModel = "GTR R35";
-    string engineType = "V6, Twin Turbo";
+    public class Fuel
+    {
+        public int fuelLevel = 0;
+        
+        public Fuel(int amount)
+        {
+            fuelLevel = amount;
+        }
+    }
+
+    public  Fuel carFuel = new Fuel(100);
     
-    int carWeight = 1609;
-    int yearMade = 2009;
+    public string CarModel = "GTR R35";
+    public string engineType = "V6, Twin Turbo";
+    public string carMaker = " ";
     
-    float maxAcceleration = 0.98f;
+    public int carWeight = 1609;
+    public int yearMade = 2009;
+
+    public float maxAcceleration = 0.98f;
     
-    bool isCarTypeSedan = false;
-    bool hasFrontEngine = true;
+    public bool isCarTypeSedan = false;
+    public bool hasFrontEngine = true;
 
 void Start()
 {
-    print("This car is a " + CarModel + " and it is quite powerful, look at the engine " + engineType + ".");
+    print("This car is a " + CarModel + " from the " + carMaker + " factory, and it is quite powerful, look at the engine: " + engineType + ".");
 
     CheckWeight();
 
@@ -39,7 +52,7 @@ void Start()
 }
  
 void CheckWeight()
- {
+{
     if (carWeight < 1500)
     {
     print("The " + CarModel + " weighs less than 1500 kg.");
@@ -71,4 +84,41 @@ string CheckCharacteristics()
     return "It's not a sedan, nor does it have a front engine.";
     }
 }
+
+void Update()
+{
+    if (Input.GetKeyDown(KeyCode.Space))
+    {
+        ConsumeFuel();
+        CheckFuelLevel();
+    }
+}
+
+void ConsumeFuel()
+    {
+    carFuel.fuelLevel = carFuel.fuelLevel -10;
+    }
+
+void CheckFuelLevel()
+{
+    switch (carFuel.fuelLevel)
+    {
+        case 70:
+            print("The fuel level is nearing two-thirds.");
+            break;
+        case 50:
+            print("The fuel level is at half amount.");
+            break;
+        case 10:
+            print("Warning! The fuel level is critically low.");
+            break;
+        case 0:
+            print("The car has stopped, call for help!");
+            break;
+        default:
+            print("Nothing to report.");
+            break;
+    } 
+}
+    
 }
