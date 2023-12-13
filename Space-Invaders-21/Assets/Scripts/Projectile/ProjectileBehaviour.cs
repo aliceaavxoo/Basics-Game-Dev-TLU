@@ -5,7 +5,6 @@ using UnityEngine;
 public class ProjectileBehaviour : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float destroyAfter = 3f;
 
     public float verticalValue = 1f;
 
@@ -14,7 +13,7 @@ public class ProjectileBehaviour : MonoBehaviour
     {
 		// Another form of the Destroy function, which allows us to destroy an object
 		// after a delay in seconds. We set the delay with a variable "destroyAfter"
-        Destroy(gameObject, destroyAfter);
+        // Destroy(gameObject, destroyAfter);
     }
 
     // Update is called once per frame
